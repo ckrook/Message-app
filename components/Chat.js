@@ -22,7 +22,7 @@ function Chat({ id, users }) {
   return (
     <div
       onClick={enterChat}
-      className="flex items-center cursor-pointer p-2 hover:bg-slate-50"
+      className="flex items-center cursor-pointer py-7 p-2 hover:bg-slate-50"
     >
       {recipient ? (
         <img
@@ -31,7 +31,10 @@ function Chat({ id, users }) {
           alt=""
         />
       ) : (
-        <FaUserCircle className="h-7 text-gray-400 w-7 m-2 mr-4" alt="" />
+        <FaUserCircle
+          className="shrink-0 h-7 text-gray-400 w-7 m-2 mr-4"
+          alt=""
+        />
       )}
       <p>{recipientEmail}</p>
     </div>

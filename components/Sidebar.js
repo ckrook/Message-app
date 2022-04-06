@@ -40,8 +40,8 @@ function Sidebar() {
   };
 
   return (
-    <div className="flex-[0.45] border-r h-screen min-w-[300px] max-w-[350px] overflow-y-scroll scrollbar-hide">
-      <header className="flex sticky top-0 justify-between items-center p-5 h-18 border-b-slate-700">
+    <div className="flex-[0.45] border-r h-screen min-w-[350px] max-w-[350px] overflow-y-scroll scrollbar-hide">
+      <header className=" flex sticky top-0 justify-between items-center p-5 h-24 border-b">
         <img
           src={user.photoURL}
           className="rounded-full w-10 h-10 cursor-pointer"
@@ -54,16 +54,16 @@ function Sidebar() {
           <BsThreeDotsVertical className="text-2xl text-gray-400 rounded-full hover:bg-slate-200" />
         </div>
       </header>
-      <div className="flex items-center p-5 rounded-lg">
-        <BsSearch />
-        <input type="text" placeholder="Search..." className="border w-full" />
-      </div>
       <button
         onClick={createChat}
-        className="w-full text-gray-600 py-4 hover:bg-slate-50 cursor-pointer"
+        className="w-full text-gray-600 py-7 font-semibold hover:bg-slate-100 bg-[#fafafa] shadow-outer shadow border-b cursor-pointer"
       >
         START A NEW CHAT
       </button>
+      <div className="flex items-center p-7 space-x-4 border-y">
+        <BsSearch />
+        <input type="text" placeholder="Search..." className=" w-full" />
+      </div>
 
       {/* LIST OF CHATS */}
       {chatsSnapshot?.docs.map((chat) => (
