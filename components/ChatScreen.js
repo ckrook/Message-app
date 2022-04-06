@@ -4,13 +4,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { FaTelegramPlane, FaUserCircle } from "react-icons/fa";
 import { auth, db } from "../firebase";
 import { GrAttachment } from "react-icons/gr";
-import { BiDotsVerticalRounded } from "react-icons/Bi";
+import { BiDotsVerticalRounded } from "react-icons/bi";
 import { useCollection } from "react-firebase-hooks/firestore";
 import Message from "./Message";
 import { useState, useRef } from "react";
 import firebase from "firebase/compat/app";
 import getRecipientEmail from "../utils/getRecipientEmail";
 import TimeAgo from "timeago-react";
+import Image from "next/image";
 
 function ChatScreen({ chat, messages }) {
   const [user] = useAuthState(auth);
