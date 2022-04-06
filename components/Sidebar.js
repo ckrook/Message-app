@@ -2,19 +2,41 @@ import React from "react";
 import { FaUserCircle, FaRegComment } from "react-icons/fa";
 import { BsThreeDotsVertical, BsSearch } from "react-icons/bs";
 import * as EmailValidator from "email-validator";
-import { auth } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { auth, db } from "../firebase";
+import Chat from "./Chat";
 
 function Sidebar() {
+  const [user] = useAuthState(auth);
+  const userChatRef = db
+    .collection("chats")
+    .where("users", "array-contains", user.email); // Get all chats where users email are included
+
+  const [chatsSnapshot] = useCollection(userChatRef); // realtime listener
+
   const createChat = () => {
     const input = prompt(
       "Please enter a email that you would like to chat with."
     );
 
     if (!input) return null;
-    if (EmailValidator.validate(input)) {
+    if (
+      EmailValidator.validate(input) &&
+      !chatAlreadyExist(input) &&
+      input !== user.email
+    ) {
       // We need to add the chat into the DB "chats" collection
-      db.collection("chats").add({});
+      db.collection("chats").add({
+        users: [user.email, input],
+      });
     }
+  };
+  const chatAlreadyExist = (recipientEmail) => {
+    !!chatsSnapshot?.docs.find(
+      (chat) =>
+        chat.data().users.find((users) => user === recipientEmail)?.length > 0
+    );
   };
 
   return (
@@ -43,6 +65,9 @@ function Sidebar() {
       </button>
 
       {/* LIST OF CHATS */}
+      {chatsSnapshot?.docs.map((chat) => (
+        <Chat key={chat.id} id={chat.id} users={chat.data().users} />
+      ))}
     </div>
   );
 }
