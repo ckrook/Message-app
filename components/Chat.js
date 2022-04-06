@@ -22,7 +22,7 @@ function Chat({ id, users }) {
   return (
     <div
       onClick={enterChat}
-      className="flex items-center cursor-pointer py-7 p-2 hover:bg-slate-50"
+      className="flex items-center cursor-pointer py-7 p-2 hover:bg-slate-50 border-b border-gray-200"
     >
       {recipient ? (
         <img
