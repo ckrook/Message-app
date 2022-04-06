@@ -1,0 +1,1 @@
+const getRecipientEmail = (users, userLoggedIn);
