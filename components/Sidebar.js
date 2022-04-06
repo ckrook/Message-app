@@ -40,13 +40,14 @@ function Sidebar() {
   };
 
   return (
-    <div>
+    <div className="flex-[0.45] border-r h-screen min-w-[300px] max-w-[350px] overflow-y-scroll scrollbar-hide">
       <header className="flex sticky top-0 justify-between items-center p-5 h-18 border-b-slate-700">
-        <FaUserCircle
+        <img
+          src={user.photoURL}
+          className="rounded-full w-10 h-10 cursor-pointer"
           onClick={() => {
             auth.signOut();
           }}
-          className="cursor-pointer text-2xl text-gray-400"
         />
         <div className="flex space-x-4 ">
           <FaRegComment className="text-2xl text-gray-400 rounded-full hover:bg-slate-200" />
