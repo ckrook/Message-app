@@ -1,5 +1,5 @@
 import React from "react";
-import { FaUserCircle, FaRegComment } from "react-icons/fa";
+import { FaRegComment } from "react-icons/fa";
 import { BsThreeDotsVertical, BsSearch } from "react-icons/bs";
 import * as EmailValidator from "email-validator";
 import { useAuthState } from "react-firebase-hooks/auth";
